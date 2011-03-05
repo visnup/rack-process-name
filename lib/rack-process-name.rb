@@ -7,10 +7,17 @@ module Rack
 
     def call(env)
       req = Rack::Request.new(env)
-      $0 = "#{@name}: *#{req.request_method} #{req.url}"
-      @app.call(env).tap do
-        $0 = "#{@name}:  #{req.request_method} #{req.url}"
-      end
+      info = "#{req.request_method} #{req.url}"
+
+      set(info, "*")
+      @app.call(env).tap { set(info, ".") }
+    rescue
+      set(info, "!")
+      raise
+    end
+
+    def set(info, state = nil)
+      $0 = "#{@name} #{state}#{info}"
     end
   end
 end
