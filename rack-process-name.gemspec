@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   ]
 
   s.add_dependency "rack", ">= 0.9.0"
+  s.add_development_dependency "sinatra"
   s.extra_rdoc_files = %w[README.md]
   s.require_paths = %w[lib]
 end
