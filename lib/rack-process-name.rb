@@ -9,10 +9,10 @@ module Rack
       req = Rack::Request.new(env)
       info = "#{req.request_method} #{req.url}"
 
-      set(info, "*")
-      @app.call(env).tap { set(info, ".") }
+      set(info, "R")
+      @app.call(env).tap { set(info, "S") }
     rescue
-      set(info, "!")
+      set(info, "E")
       raise
     end
 
