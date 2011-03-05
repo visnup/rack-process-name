@@ -17,7 +17,7 @@ module Rack
     end
 
     def set(info, state = nil)
-      $0 = "#{@name} #{state}#{info}"
+      $0 = "#{@name} #{state} #{info}"
     end
   end
 end
