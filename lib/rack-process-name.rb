@@ -7,9 +7,9 @@ module Rack
 
     def call(env)
       req = Rack::Request.new(env)
-      $0 = "#{@name}: #{req.request_method} #{req.url}"
+      $0 = "#{@name}: *#{req.request_method} #{req.url}"
       @app.call(env).tap do
-        $0 = @name
+        $0 = "#{@name}:  #{req.request_method} #{req.url}"
       end
     end
   end
