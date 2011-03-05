@@ -15,15 +15,13 @@ The letter before the request method means:
 Installation
 ============
 
-In Rails, add to your Gemfile:
+In Rails, just add to your Gemfile:
 
     gem 'rack-process-name'
 
-then in application.rb or in one of config/environments/*.rb:
+the gem will include itself as middleware.
 
-    config.middleware.use Rack::ProcessName
-
-If using config.ru:
+If in Sinatra or using config.ru:
 
     require 'rack-process-name'
     use Rack::ProcessName

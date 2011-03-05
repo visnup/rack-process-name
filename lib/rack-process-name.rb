@@ -1,3 +1,5 @@
+require "rack"
+
 module Rack
   class ProcessName
     def initialize(app)
@@ -18,6 +20,14 @@ module Rack
 
     def set(info, state = nil)
       $0 = "#{@name} #{state} #{info}"
+    end
+
+    if defined?(Rails::Railtie)
+      class Railtie < Rails::Railtie
+        initializer "rack_process_name.use_middleware" do |app|
+          app.config.middleware.use Rack::ProcessName
+        end
+      end
     end
   end
 end
